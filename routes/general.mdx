@@ -1,0 +1,83 @@
+---
+title: "Define a route"
+---
+
+If you want to create your own web feed (instead of using others), you need to define a route.
+
+<Note>
+  This documentation is written for those who want to code to define a route. You can always try to use our Visual WebFeed Generator or AI WebFeed Generator first and only come back here if you have to.
+</Note>
+
+<Note>
+  If our AI WebFeed Geneator failed to generate the feed you need, and you're not a programmer or not proficient in JavaScript, you can ask AI to do it for you. Remember to provide this AI-friendly doc link to AI.
+</Note>
+
+## Create a route
+
+Each route should reside in its own folder, with its id as the directory name. The route directory should at least have a file called `route.ts` that defines the route's metadata.
+
+```
+[route-id]
+├── route.ts               # Route's metadata
+└── ...                    # Any other files you may need
+```
+
+<Tip>
+  **File Extensions**
+
+  We support using both `.ts` `.js` `.json` `.yml` and `.yaml` file extensions when defining routes. However, we suggest using `.ts` to provide the best type-safety.
+</Tip>
+
+In your `route.ts`, write your route definition:
+
+```javascript route.ts
+export default defineRoute({
+    name: 'My first Route',
+    url: 'https://example.com',
+    type: 'simple',
+    actions: [],
+})
+```
+
+We will talk about fields in the above examples right after current section. But now, we have successfully written our first route.
+
+Be sure to add this route to your `site.ts` definition file, so that we know to pick this route on deployment.
+
+```javascript site.ts
+export default defineSite({
+    // ...
+    routes: [
+        // ...       // your other routes
+        "[route-id]" // same route id as your route directory
+    ]
+})
+```
+
+## Fields
+
+When defining a route, you must provide a `name` for this route. You also need to pick a `type` for this route and provide the fields required by your chosen type.
+
+See our previous example:
+
+```javascript route.ts
+export default defineRoute({
+    name: 'My first Route',
+    url: 'https://example.com',
+    type: 'simple',
+    actions: [],
+})
+```
+
+The `action` is for [Simple Route](./simple.mdx).
+
+The URL is a field that you generally should provide. It doesn't have an exact function, but the dashboard UI will display it to you, and it will become the generated feed's link if not overridden.
+
+### Type
+
+We now provide two types of routes: [simple](./simple.mdx) and script.
+
+A simple route is where you define a list of actions that the webfeed generator will execute to generate the feed.  
+
+A script route is where you define a script that the webfeed generator will execute, using its return value as the feed.  
+
+We suggest using a simple route at first, and only switching to a script route if necessary.
