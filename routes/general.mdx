@@ -22,6 +22,8 @@ Each route should reside in its own folder, with its id as the directory name. T
 └── ...                    # Any other files you may need
 ```
 
+Oh, and if the route is simple enough that it only has a route.ts, you can just use `[route-id].ts` without a tedious directory.
+
 <Tip>
   **File Extensions**
 
@@ -76,8 +78,8 @@ The URL is a field that you generally should provide. It doesn't have an exact f
 
 We now provide two types of routes: [simple](./simple.mdx) and script.
 
-A simple route is where you define a list of actions that the webfeed generator will execute to generate the feed.  
+A simple route is where you define a list of actions that the webfeed generator will execute to generate the feed.
 
-A script route is where you define a script that the webfeed generator will execute, using its return value as the feed.  
+A script route is where you define a script that the webfeed generator will execute, using its return value as the feed.
 
 We suggest using a simple route at first, and only switching to a script route if necessary.

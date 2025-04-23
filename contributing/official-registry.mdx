@@ -1,3 +1,29 @@
 ---
-title: "Contribute to official registry"
+title: "Contribute to the Official Registry"
 ---
+
+We understand that manually writing all routes can be tedious, so we offer an official registry. This document is for those who wish to contribute to our registry, providing guidance on how to do so.
+
+## Requirements
+
+Our product is powerful enough to allow you to generate any feed you desire. However, with great power comes the potential for misuse. To protect our users, we review all scripts available in our official registry. Additionally, we have specific requirements that apply only to scripts in our official registry.
+
+- All scripts must be in `.ts` format. Other formats (e.g., `.js`, `.json`) are not acceptable.
+- The `url` field is required.
+- The `security.network.onlyAllowUrls` field is required.
+- You must document your parameters (if any).
+- You must write comments for any complex logic.
+- We do not currently accept scripts intended for self-hosted sites.
+- If the site is behind a paywall, you must provide a valid paid account for us.
+
+There are also some hidden requirements that are not publicly stated. However, don't worry; the AI review robot will guide you to pass our test. We will do our best not to waste your time.
+
+## Process
+
+1. Fork our official registry repo, and clone it to your local computer.
+2. Run `pnpm install` to install all dependencies.
+3. Place your route files in your desired location.
+4. Run `pnpm check [your-new-route-id]` to ensure "You can now submit the PR" is displayed.
+5. Submit the PR.
+6. AI will review your PR first. If there are any changes you need to make, please make them. Once the AI approves, it will update the PR's status and notify the human reviewer.
+7. A human reviewer will review your PR and merge it if they approve.
