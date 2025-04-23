@@ -1,0 +1,75 @@
+---
+title: "Simple Route"
+description: "The simple route is used for the majority of cases."
+---
+
+If your web feed is as simple as requesting a link and extracting some information, you should use the simple route.
+
+The simple route is the most efficient way to generate a web feed. It doesn't require a whole JS runtime, but it does lack some features.
+
+## Definition
+
+You need to set `"type": "simple"` when defining your route, and then provide your `actions` .
+
+```javascript
+export default defineRoute({
+    name: 'my-first-simple-route',
+    type: 'simple',
+    actions: [...],
+})
+```
+
+Or you can use `defineSimpleRoute`:
+
+```javascript
+export default defineSimpleRoute({
+    name: 'my-first-simple-route',
+    actions: [...],
+})
+```
+
+And if you like, you can also move your `actions` definition to a separate `actions.ts` file.
+
+```javascript actions.ts
+export default defineSimpleActions([...]);
+```
+
+<Note>
+  We recommend providing your actions in TypeScript form to ensure you never make a typo or similar mistakes.
+
+  The definition script for a simple route will only run in the deploy step. If you need to do something with JavaScript, you have to choose Script Route.
+</Note>
+
+## Actions
+
+`actions` is an array that provides a list of actions you want to perform.
+
+For now, only the following actions are available:
+
+- `get-html` Request a web page's content by URL, either statically or dynamically rendered.
+- `get-json` Request JSON data from a URL.
+- `extract-data-from-html` Extract data from a URL using a CSS query selector.
+
+But we plan to make simple routes more and more useful. We expect at least 70% of routes in our official registry to be written in simple routes. So you can request any features you want as long as it can be described well in JSON, not a script, and we will make it for you.
+
+When defining an `action` in your route file, you can use the JSON format. However, in most cases, you may want to use our helper functions created for each action.
+
+```javascript
+const actions = defineSimpleActions([
+    {
+        "action": "get-html",
+        "params": {
+            "url": "https://example.com",
+			"render": "dynamic"
+        }
+    }
+])
+
+// OR
+
+import { getHtml } from "@anyfeed/platform/simple"
+
+const actions = defineSimpleActions([
+    getHtml("https://example.com", {render: "dynamic"}),
+])
+```
